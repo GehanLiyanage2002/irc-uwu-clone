@@ -1,52 +1,79 @@
-// components/home/HeroSection.tsx
+"use client"; // <--- 1. Required for interactivity/window measurement
+
 import Link from "next/link";
-import { FlickeringGrid } from "@/components/ui/flickering-grid" // Check your specific path
-import { ArrowRight, Calendar, MapPin } from "lucide-react"; // Assuming lucide-react is installed for icons
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  // 2. Measure the container size whenever the window resizes
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        setSize({
+          width: containerRef.current.offsetWidth,
+          height: containerRef.current.offsetHeight,
+        });
+      }
+    };
+
+    // Initial measure
+    updateSize();
+
+    // Listen for resize events
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   return (
-    <section className="relative w-full overflow-hidden bg-background min-h-[85vh] flex items-center justify-center border-b">
+    <section 
+      ref={containerRef} // <--- 3. Attach ref here to measure this section
+      className="relative w-full overflow-hidden bg-background min-h-[85vh] flex items-center justify-center border-b"
+    >
       
       {/* --- Background: Flickering Grid --- */}
       <div className="absolute inset-0 size-full">
-        <FlickeringGrid
-          className="z-0 absolute inset-0 size-full"
-          squareSize={4}
-          gridGap={6}
-          color="#6B7280" // Gray-500: Adjust to your brand color (e.g., #3b82f6 for blue)
-          maxOpacity={0.5}
-          flickerChance={0.1}
-          height={1200} // Ensure it covers large screens
-          width={1600}
-        />
+        {/* Only render grid if we have valid dimensions to prevent layout shift errors */}
+        {size.width > 0 && (
+          <FlickeringGrid
+            className="z-0 absolute inset-0 size-full"
+            squareSize={4}
+            gridGap={6}
+            color="#6B7280"
+            maxOpacity={0.5}
+            flickerChance={0.1}
+            // 4. Pass dynamic dimensions instead of static numbers
+            height={size.height}
+            width={size.width}
+          />
+        )}
         
         {/* Gradient Overlay for Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10" />
       </div>
 
-      {/* --- Foreground: Content --- */}
+      {/* --- Foreground: Content (Same as before) --- */}
       <div className="container relative z-20 px-4 md:px-6 flex flex-col items-center text-center space-y-8">
         
-        {/* Badge / Year */}
         <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-secondary/50 backdrop-blur-sm text-secondary-foreground">
           <span>ICONF 2026</span>
           <span className="mx-2 h-1 w-1 rounded-full bg-primary" />
           <span>Call for Papers Open</span>
         </div>
 
-        {/* Main Heading */}
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl max-w-4xl">
           International Conference on <br className="hidden md:block" />
           <span className="text-primary">Future Technologies & Innovation</span>
         </h1>
 
-        {/* Subtitle / Details */}
         <p className="max-w-[700px] text-muted-foreground text-lg md:text-xl">
           Join leading researchers, engineers, and visionaries as we explore the 
           next generation of computing and digital transformation.
         </p>
 
-        {/* Date & Location Meta */}
         <div className="flex flex-col md:flex-row gap-4 md:gap-8 text-sm font-medium text-foreground/80">
           <div className="flex items-center gap-2 justify-center">
             <Calendar className="h-4 w-4 text-primary" />
@@ -58,7 +85,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
           <Link
             href="/registration"
