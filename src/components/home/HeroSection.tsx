@@ -25,8 +25,8 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
       className="relative w-full overflow-hidden bg-background min-h-[90vh] flex items-center justify-center border-b pb-12"
     >
       {/* Background */}
@@ -48,7 +48,7 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="container relative z-20 px-4 md:px-6 flex flex-col items-center text-center space-y-8 pt-10">
-        
+
         {/* Badge */}
         <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium bg-secondary/50 backdrop-blur-sm text-secondary-foreground animate-in fade-in slide-in-from-top-4 duration-700">
           <span>ICONF 2026</span>
@@ -58,14 +58,14 @@ export default function HeroSection() {
 
         {/* Headings */}
         <h1 className="text-4xl font-extrabold tracking-tight lg:text-7xl max-w-5xl animate-in fade-in zoom-in duration-1000">
-          International Conference on <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
-            Future Technologies
+          International Research Conference of <br className="hidden md:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#005596] to-blue-400">
+            Uva Wellassa University - 2025
           </span>
         </h1>
 
         <p className="max-w-[700px] text-muted-foreground text-lg md:text-xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-          Join leading researchers, engineers, and visionaries as we explore the 
+          Join leading researchers, engineers, and visionaries as we explore the
           next generation of computing and digital transformation.
         </p>
 
@@ -88,10 +88,10 @@ export default function HeroSection() {
 
         {/* --- NEW: Modern Countdown Timer --- */}
         <div className="pt-10 pb-4 w-full animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
-            <p className="text-sm text-muted-foreground mb-4 font-medium uppercase tracking-widest">
-              Conference Starts In
-            </p>
-            <CountdownTimer targetDate="2026-10-15T09:00:00" />
+          <p className="text-sm text-muted-foreground mb-4 font-medium uppercase tracking-widest">
+            Conference Starts In
+          </p>
+          <CountdownTimer targetDate="2026-10-15T09:00:00" />
         </div>
 
       </div>
