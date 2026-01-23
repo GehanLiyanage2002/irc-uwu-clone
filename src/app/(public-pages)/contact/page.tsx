@@ -32,18 +32,18 @@ export default function ContactPage() {
             {/* Conference Office */}
             <div className="space-y-6">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                🏠 Conference Office
+                Conference Office
               </h3>
 
               <div className="space-y-4 text-gray-700">
                 <p className="flex items-center gap-3">
-                  📞 +94-55-3053766
+                   +94-55-3053766
                 </p>
                 <p className="flex items-center gap-3">
-                  ☎️ +94-55-2226633
+                   +94-55-2226633
                 </p>
                 <p className="flex items-center gap-3">
-                  ✉️
+            
                   <a
                     href="mailto:conference@uwu.ac.lk"
                     className="text-blue-600 hover:underline"
