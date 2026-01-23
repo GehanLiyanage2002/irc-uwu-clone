@@ -23,8 +23,17 @@ export default function CallForPapersLayout(){
     return (
         <>
             <Navbar />
-            {/* Add your Call for Papers page content here */}
-            <Footer />
+            {/* Add your Call for Papers page content here */
+            
+            
+            
+            
+            
+            
+                   
+            
+            }
+            {/* <Footer /> */}
         </>
     );
 }
