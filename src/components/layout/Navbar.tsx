@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Committee", href: "/committee" },
   { name: "Speakers", href: "/keynote-speakers" },
   { name: "Call for Papers", href: "/call-for-papers" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
